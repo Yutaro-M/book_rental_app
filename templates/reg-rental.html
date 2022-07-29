@@ -1,0 +1,37 @@
+<!-- 貸出の登録 -->
+{% extends "layout.html" %}
+
+<!-- 差分を記述 -->
+{%- block main %}
+
+<!-- メイン -->
+<style>
+
+</style>
+<main class="main-p">
+  <div class="main-c common-w">
+    <h1>貸出登録</h1>
+      <div class="reg-rental">
+        <form action="{{ url_for('rental_bp.reg_rental_db') }}" method="POST">
+          <div>
+            <label for="user-id">ユーザーID</label>
+            <input type="text" id="user-id" name="user_id">
+          </div>
+          <div>
+            <label for="book-id">書籍ID</label>
+            <input type="text" id="book-id" name="book_id">
+          </div>
+          <div class="message {{message.status}}">{{ message.body }}</div>
+          <button type="submit" id="book-register">データベースに登録</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+'use strict';
+
+</script>
+
+{% endblock %}

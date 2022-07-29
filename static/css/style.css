@@ -1,0 +1,651 @@
+@charset "UTF-8";
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.6;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font: inherit;
+  margin: 0;
+}
+
+p, blockquote {
+  margin: 0;
+}
+
+header a, footer a {
+  text-decoration: none;
+}
+
+button, input {
+  font: inherit;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+dl, dd {
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td, textarea {
+  padding: 0;
+}
+
+th {
+  font: inherit;
+  text-align: left;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+hr {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+  height: auto;
+}
+
+figure {
+  margin: 0;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+input {
+  border: 1px solid #000;
+  border-color: inherit;
+  background-color: transparent;
+  padding: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+[type=reset] {
+  border: none;
+  cursor: pointer;
+}
+
+[type=file] {
+  border: none;
+  cursor: pointer;
+}
+
+/* 余白調整用スタイル */
+.mt-0 {
+  margin-top: 0px !important;
+}
+
+.mb-0 {
+  margin-bottom: 0px !important;
+}
+
+.pt-0 {
+  padding-top: 0px !important;
+}
+
+.pb-0 {
+  padding-bottom: 0px !important;
+}
+
+.mt-5 {
+  margin-top: 5px !important;
+}
+
+.mb-5 {
+  margin-bottom: 5px !important;
+}
+
+.pt-5 {
+  padding-top: 5px !important;
+}
+
+.pb-5 {
+  padding-bottom: 5px !important;
+}
+
+.mt-10 {
+  margin-top: 10px !important;
+}
+
+.mb-10 {
+  margin-bottom: 10px !important;
+}
+
+.pt-10 {
+  padding-top: 10px !important;
+}
+
+.pb-10 {
+  padding-bottom: 10px !important;
+}
+
+.mt-15 {
+  margin-top: 15px !important;
+}
+
+.mb-15 {
+  margin-bottom: 15px !important;
+}
+
+.pt-15 {
+  padding-top: 15px !important;
+}
+
+.pb-15 {
+  padding-bottom: 15px !important;
+}
+
+.mt-20 {
+  margin-top: 20px !important;
+}
+
+.mb-20 {
+  margin-bottom: 20px !important;
+}
+
+.pt-20 {
+  padding-top: 20px !important;
+}
+
+.pb-20 {
+  padding-bottom: 20px !important;
+}
+
+/* 変数 */
+/* 共通 */
+body {
+  background-color: #131516;
+  color: #d8d4cf;
+  font-size: 16px;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+h1 {
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+.message.error {
+  color: #fd5252;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.message.success {
+  color: #72aeca;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/* ナビゲーションの現在ページ表示 */
+.active {
+  border-radius: 5px;
+  background-color: #306279;
+  transition: background-color 0.1s;
+}
+.active a {
+  color: #e8e6e3 !important;
+}
+
+/* テーブル */
+table {
+  width: 100%;
+  word-break: break-all;
+  overflow-x: scroll;
+}
+
+.td-btn {
+  width: 56px;
+}
+
+.td-user-id {
+  width: 52px;
+}
+
+.td-user-name {
+  width: 104px;
+}
+
+.td-book-id {
+  width: 68px;
+}
+
+.td-isbn {
+  width: 126px;
+}
+
+.td-person {
+  width: 76px;
+}
+
+.td-day {
+  width: 92px;
+}
+
+/* 共通の幅 */
+.common-w {
+  width: 740px;
+  margin: auto;
+}
+
+/* ヘッダー */
+.header-c {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-bottom: #4583a1 2px dotted;
+  padding-bottom: 5px;
+}
+.header-c .title-c {
+  display: flex;
+  justify-content: space-between;
+  /* 異なるサイズのフォントが存在するので、上下中央揃えにする */
+  align-items: center;
+}
+.header-c .title-c .title {
+  color: #72aeca;
+  font-size: 24px;
+}
+.header-c .title-c .logout-btn {
+  color: #72aeca;
+  margin-right: 20px;
+}
+.header-c .title-c .login-name {
+  font-size: 14px;
+}
+
+.gnav {
+  display: flex;
+  gap: 22px;
+  margin-top: 15px;
+  font-size: 16px;
+}
+.gnav a {
+  display: block;
+  padding: 5px 15px;
+}
+.gnav a:-webkit-any-link {
+  color: #a8a095;
+}
+.gnav a:-moz-any-link {
+  color: #a8a095;
+}
+.gnav a:any-link {
+  color: #a8a095;
+}
+.gnav a:hover {
+  border-radius: 5px;
+  background-color: #306279;
+  color: #e8e6e3;
+  transition: background-color 0.1s;
+}
+
+/* ログイン画面 */
+.login-p {
+  max-width: 370px;
+  margin: 1em auto;
+  margin-top: 60px;
+  background: #1c2426;
+}
+
+.login-c {
+  padding: 1em 2em;
+}
+.login-c h1 {
+  margin-bottom: 25px;
+  color: #72aeca;
+  font-size: 24px;
+  text-align: center;
+  border-bottom: #a8a095 1px solid;
+  padding-bottom: 5px;
+}
+.login-c form {
+  margin-top: 1em;
+  padding: 0 20px;
+}
+.login-c form label {
+  display: block;
+  width: 100px;
+  margin-bottom: 5px;
+}
+.login-c form input {
+  display: inline-block;
+  width: 100%;
+  padding: 0.5em;
+  border: none;
+  background-color: #131516;
+}
+.login-c form .login-input {
+  margin-bottom: 20px;
+}
+.login-c form button {
+  display: block;
+  width: 200px;
+  height: 40px;
+  margin: auto;
+  margin-top: 30px;
+  background-color: #306279;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.login-c form button:hover {
+  opacity: 0.8;
+  transition: 0.1s;
+}
+.login-c form .message.error {
+  margin-top: 10px;
+  color: #fd5252;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.login-c form .message.success {
+  margin-top: 10px;
+  color: #72aeca;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/* 書籍登録 */
+.reg-book-img {
+  display: flex;
+  gap: 50px;
+  max-width: 720px;
+  background-color: #1c2426;
+  padding: 25px 20px;
+}
+
+.reg-book div {
+  display: flex;
+  margin-bottom: 10px;
+}
+.reg-book div label {
+  width: 100px;
+}
+.reg-book div input {
+  width: 250px;
+  font-size: 14px;
+  padding: 0 0.5em;
+  border: none;
+  background: #131516;
+}
+.reg-book button {
+  display: block;
+  width: 200px;
+  height: 40px;
+  margin: auto;
+  margin-top: 30px;
+  background-color: #306279;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.reg-book button:hover {
+  opacity: 0.8;
+  transition: 0.1s;
+}
+
+/* 書籍管理 */
+.list-book {
+  max-width: 720px;
+  background-color: #1c2426;
+  padding: 25px 20px;
+}
+.list-book input {
+  margin-left: 0.5em;
+  width: 100px;
+  font-size: 14px;
+  padding: 0 0.5em;
+  border: none;
+  background: #131516;
+}
+.list-book .delete-book button {
+  margin-left: 1em;
+  padding: 2px 5px;
+  background-color: #306279;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.list-book .delete-book button:hover {
+  opacity: 0.8;
+  transition: 0.1s;
+}
+.list-book table {
+  margin-top: 16px;
+}
+.list-book table th, .list-book table td {
+  padding: 4px 10px;
+}
+.list-book table td {
+  font-size: 14px;
+}
+.list-book table tr:nth-of-type(even) {
+  background: #333638;
+}
+.list-book table button {
+  padding: 0 4px;
+  background-color: #306279;
+  border-radius: 4px;
+}
+.list-book table button:hover {
+  opacity: 0.8;
+  transition: 0.1s;
+}
+
+/* ユーザー登録 */
+.reg-user {
+  max-width: 500px;
+  background-color: #1c2426;
+  padding: 25px 20px;
+}
+.reg-user div {
+  display: flex;
+  margin-bottom: 10px;
+}
+.reg-user div label {
+  width: 150px;
+}
+.reg-user div input {
+  width: 250px;
+  font-size: 14px;
+  padding: 0 0.5em;
+  border: none;
+  background: #131516;
+}
+.reg-user button {
+  display: block;
+  width: 200px;
+  height: 40px;
+  margin: auto;
+  margin-top: 30px;
+  background-color: #306279;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.reg-user button:hover {
+  opacity: 0.8;
+  transition: 0.1s;
+}
+
+/* ユーザー管理 */
+.list-user {
+  max-width: 720px;
+  background-color: #1c2426;
+  padding: 25px 20px;
+}
+.list-user input {
+  margin-left: 0.5em;
+  width: 100px;
+  font-size: 14px;
+  padding: 0 0.5em;
+  border: none;
+  background: #131516;
+}
+.list-user .delete-user button {
+  margin-left: 1em;
+  padding: 2px 5px;
+  background-color: #306279;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.list-user .delete-user button:hover {
+  opacity: 0.8;
+  transition: 0.1s;
+}
+.list-user table {
+  margin-top: 16px;
+}
+.list-user table th, .list-user table td {
+  padding: 4px 10px;
+}
+.list-user table td {
+  font-size: 14px;
+}
+.list-user table tr:nth-of-type(even) {
+  background: #333638;
+}
+.list-user table button {
+  padding: 0 4px;
+  background-color: #306279;
+  border-radius: 4px;
+}
+.list-user table button:hover {
+  opacity: 0.8;
+  transition: 0.1s;
+}
+
+/* 貸出登録 */
+.reg-rental {
+  max-width: 500px;
+  background-color: #1c2426;
+  padding: 25px 20px;
+}
+.reg-rental div {
+  display: flex;
+  margin-bottom: 10px;
+}
+.reg-rental div label {
+  width: 100px;
+}
+.reg-rental div input {
+  width: 150px;
+  font-size: 14px;
+  padding: 0 0.5em;
+  border: none;
+  background: #131516;
+}
+.reg-rental button {
+  display: block;
+  width: 200px;
+  height: 40px;
+  margin: auto;
+  margin-top: 30px;
+  background-color: #306279;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.reg-rental button:hover {
+  opacity: 0.8;
+  transition: 0.1s;
+}
+
+/* 貸出管理 */
+.list-rental {
+  max-width: 720px;
+  background-color: #1c2426;
+  padding: 25px 20px;
+}
+.list-rental input {
+  margin-left: 0.5em;
+  width: 100px;
+  font-size: 14px;
+  padding: 0 0.5em;
+  border: none;
+  background: #131516;
+}
+.list-rental .return-book-input {
+  margin-left: 20px;
+}
+.list-rental .return-rental button {
+  margin-left: 1em;
+  padding: 2px 5px;
+  background-color: #306279;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.list-rental .return-rental button:hover {
+  opacity: 0.8;
+  transition: 0.1s;
+}
+.list-rental table {
+  margin-top: 16px;
+}
+.list-rental table th, .list-rental table td {
+  padding: 4px 10px;
+}
+.list-rental table td {
+  font-size: 14px;
+}
+.list-rental table tr:nth-of-type(even) {
+  background: #333638;
+}
+.list-rental table button {
+  padding: 0 4px;
+  background-color: #306279;
+  border-radius: 4px;
+}
+.list-rental table button:hover {
+  opacity: 0.8;
+  transition: 0.1s;
+}
+
+.pagination-page-info {
+  margin-top: 20px;
+}
+
+.pagination {
+  display: flex;
+  margin-top: 5px;
+}
+.pagination .item {
+  width: 30px;
+  color: inherit;
+  text-align: center;
+  text-decoration: none;
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,63 @@
+<!-- 書籍の登録 -->
+{% extends "layout.html" %}
+
+<!-- 差分を記述 -->
+{%- block main %}
+
+<style>
+
+</style>
+
+<!-- メイン -->
+<main class="main-p">
+  <div class="main-c common-w">
+    <h1>ユーザー管理</h1>
+    <div class="list-user">
+      <div class="delete-user">
+        <form action="{{ url_for('user_bp.delete_user') }}" method="POST">
+          <div>
+            <div class="message {{message.status}}">{{ message.body }}</div>
+            <label for="delete-user-id">削除対象ID：</label>
+            <input type="text" id="delete-user-id" name="delete-user-id">
+            <button type="submit">ユーザーを削除</button>
+          </div>
+        </form>
+      </div>
+      <table>
+          <tr>
+              <th></th>
+              <th>ID</th>
+              <th>氏名</th>
+              <th>メールアドレス</th>
+              <th>登録者</th>
+              <th>登録日時</th>
+              <!-- <th>更新日時</th> -->
+          </tr>
+          <!-- for文を使って、DBの情報が格納されたリストの値を取得 -->
+          {% for user in user_lst %}
+          <tr>
+            <td class="td-btn">
+              <form action="{{ url_for('user_bp.delete_user') }}" method="POST">
+                <button type="submit" id="delete-user" name="delete-user-id" value="{{ user.user_id }}">削除</button>
+              </form>
+            </td>
+            <td class="td-user-id">{{ user.user_id }}</td>
+            <td class="td-user-name">{{ user.user_name }}</td>
+            <td class="td-email">{{ user.user_email }}</td>
+            <td class="td-person">{{ user.person }}</td>
+            <td class="td-day">{{ user.created_at }}</td>
+            <!-- <td>{{ user.updated_at }}</td> -->
+          </tr>
+          {% endfor %}
+      </table>
+    </div>
+  </div>
+</main>
+
+
+<script>
+'use strict';
+
+</script>
+
+{% endblock %}

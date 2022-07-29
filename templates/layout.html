@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>書籍貸出管理</title>
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}"> -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.min.css') }}">
+  <!-- GoogleFonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+</style>
+</head>
+
+<body>
+<!-- ヘッダー -->
+<header class="header-p">
+  <div class="header-c common-w">
+    <div class="title-c">
+      <a class="title" href="#">書籍貸出管理</a>
+      <!-- セッション情報は直接テンプレートエンジンで使える -->
+      <p>
+        <a class="logout-btn" href="{{ url_for('login_bp.logout') }}">ログアウト</a>
+        <span class="login-name">ログイン：{{ session['member_name'] }}</span>
+      </p>
+
+    </div>
+    <nav>
+      <!-- <ul class="gnav">
+        <li><a href="rental.html" id="test">貸出登録</a></li>
+        <li><a href="manage-rental.html">貸出管理</a></li>
+        <li><a href="#">ユーザー</a>
+          <ul>
+            <li><a href="{{ url_for('user_bp.reg_user') }}">ユーザー登録</a></li>
+            <li><a href="{{ url_for('user_bp.list_user') }}">ユーザー管理</a></li>
+          </ul>
+        </li>
+        <li><a href="#">書籍</a>
+          <ul>
+            <li><a href="{{ url_for('book_bp.reg_book') }}">書籍登録</a></li>
+            <li><a href="{{ url_for('book_bp.list_book') }}">書籍管理</a></li>
+          </ul>
+        </li>
+        <li><a href="admin.html">権限管理</a></li>
+        <li><a href="{{ url_for('login_bp.login') }}">ログイン</a></li>
+        <li><a href="{{ url_for('login_bp.logout') }}">ログアウト</a></li>
+      </ul> -->
+      <ul class="gnav">
+        <li class="{{ navigation['reg-rental'] }}"><a href="{{ url_for('rental_bp.reg_rental') }}">貸出登録</a></li>
+        <li class="{{ navigation['list-rental'] }}"><a href="{{ url_for('rental_bp.list_rental') }}">貸出管理</a></li>
+        <li class="{{ navigation['reg-user'] }}"><a href="{{ url_for('user_bp.reg_user') }}">ユーザー登録</a></li>
+        <li class="{{ navigation['list-user'] }}"><a href="{{ url_for('user_bp.list_user') }}">ユーザー管理</a></li>
+        <li class="{{ navigation['reg-book'] }}"><a href="{{ url_for('book_bp.reg_book') }}">書籍登録</a></li>
+        <li class="{{ navigation['list-book'] }}"><a href="{{ url_for('book_bp.list_book') }}">書籍管理</a></li>
+
+        <!-- <li><a href="admin.html">権限管理</a></li> -->
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- メイン -->
+{% block main %}
+{% endblock %}
+
+</body>
+</html>

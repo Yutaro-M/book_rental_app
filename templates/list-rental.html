@@ -1,0 +1,70 @@
+<!-- 書籍の登録 -->
+{% extends "layout.html" %}
+
+<!-- 差分を記述 -->
+{%- block main %}
+
+<style>
+
+</style>
+
+<!-- メイン -->
+<main class="main-p">
+  <div class="main-c common-w">
+    <h1>書籍管理</h1>
+    <div class="list-rental">
+      <div class="return-rental">
+        <form action="{{ url_for('rental_bp.return_rental') }}" method="POST">
+          <div>
+            <div class="message {{message.status}}">{{ message.body }}</div>
+            <label for="return-user-id">ユーザーID：</label>
+            <input type="text" id="return-user-id" name="return-user-id">
+            <label class="return-book-input" for="return-book-id">書籍ID：</label>
+            <input type="text" id="return-book-id" name="return-book-id">
+            <button type="submit">書籍を返却</button>
+          </div>
+
+        </form>
+      </div>
+      <table>
+          <tr>
+              <th></th>
+              <th>ID</th>
+              <th>氏名</th>
+              <th>書籍ID</th>
+              <th>書籍のタイトル</th>
+              <th>貸出日</th>
+              <th>返却日</th>
+          </tr>
+          <!-- for文を使って、DBの情報が格納されたリストの値を取得 -->
+          {% for rental in rental_lst %}
+          <tr>
+              <td class="td-btn">
+                <!-- 返却していないレコード（NULLが格納されているレコード）のみ、ボタンを表示 -->
+                {% if not rental.returned_at %}
+                <form action="{{ url_for('rental_bp.return_rental') }}" method="POST">
+                  <!-- ボタンを押すと、2つの値を送信する -->
+                  <button type="submit" id="return-rental" name="return-user-book-id" value="{{ rental.user_id }}/{{ rental.book_id }}">返却</button>
+                </form>
+                {% endif %}
+              </td>
+              <td class="td-user-id">{{ rental.user_id }}</td>
+              <td class="td-user-name">{{ rental.user_name }}</td>
+              <td class="td-book-id">{{ rental.book_id }}</td>
+              <td class="td-title">{{ rental.title }}</td>
+              <td class="td-day">{{ rental.created_at }}</td>
+              <td class="td-day">{{ rental.returned_at }}</td>
+          </tr>
+          {% endfor %}
+      </table>
+    </div>
+  </div>
+</main>
+
+
+<script>
+'use strict';
+
+</script>
+
+{% endblock %}

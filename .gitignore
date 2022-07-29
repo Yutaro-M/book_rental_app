@@ -1,0 +1,4 @@
+__pycache__/
+.vscode/
+.venv/
+hash_value.py

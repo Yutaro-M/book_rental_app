@@ -1,0 +1,92 @@
+<!-- 書籍の登録 -->
+{% extends "layout.html" %}
+
+<!-- 差分を記述 -->
+{%- block main %}
+
+<style>
+
+</style>
+
+<!-- メイン -->
+<main class="main-p">
+  <div class="main-c common-w">
+    <h1>書籍管理</h1>
+    <div class="list-book">
+      <div class="delete-book">
+        <form action="{{ url_for('book_bp.delete_book') }}" method="POST">
+          <div>
+            <div class="message {{message.status}}">{{ message.body }}</div>
+            <label for="delete-book-id">削除対象ID：</label>
+            <input type="text" id="delete-book-id" name="delete-book-id">
+            <button type="submit">書籍を削除</button>
+          </div>
+
+        </form>
+      </div>
+      <!-- 下記の一文は不要（削除ボタンを押したときに、ページ番号を送るように設定した） -->
+      <input type="hidden" id="current-page-number" value="{{pagination.page}}" />
+      <table>
+          <tr>
+              <th></th>
+              <th>ID</th>
+              <th>ISBN</th>
+              <th>タイトル</th>
+              <!-- <th>著者</th> -->
+              <!-- <th>出版社</th> -->
+              <!-- <th>発行日</th> -->
+              <th>登録者</th>
+              <th>登録日時</th>
+              <!-- <th>更新日時</th> -->
+          </tr>
+          <!-- for文を使って、DBの情報が格納されたリストの値を取得 -->
+          {% for book in book_lst %}
+          <tr>
+              <td class="td-btn">
+                <form action="{{ url_for('book_bp.delete_book') }}" method="POST">
+                  <!-- delete-book?page=2、ページ数の「2」を送信するための一行 -->
+                  <!-- 元々はvalueを付けていなかったが、pagination.pageを使うことでページ番号を送信できることがわかった -->
+                  <input type="hidden" class="page-param" name="page-param" value="{{ pagination.page }}">
+
+                  <input type="hidden" id="delete-book" name="delete-book-id" value="{{ book.id }}">
+                  <button type="submit">削除</button>
+
+                  <!-- 論理削除をするだけの場合、以下の一行でOK -->
+                  <!-- <button type="submit" id="delete-book" name="delete-book-id" value="{{ book.id }}">削除</button> -->
+                </form>
+              </td>
+              <td class="td-book-id">{{ book.id }}</td>
+              <td class="td-isbn">{{ book.isbn }}</td>
+              <td class="td-title">{{ book.title }}</td>
+              <!-- <td>{{ book.author }}</td> -->
+              <!-- <td>{{ book.publisher }}</td> -->
+              <!-- <td>{{ book.pubdate }}</td> -->
+              <td class="td-person">{{ book.person }}</td>
+              <td class="td-day">{{ book.created_at }}</td>
+              <!-- <td>{{ book.updated_at }}</td> -->
+          </tr>
+          {% endfor %}
+      </table>
+      {{ pagination.info }}
+      {{ pagination.links }}
+
+    </div>
+  </div>
+</main>
+
+
+<script>
+  // pagination.pageを使うことで以下のコードは不要
+  // delete-book?page=2、ページ数の「2」を送信するためのコード
+  /*
+'use strict';
+let param = location.search;  // delete-book?page=2の「?page=2」を格納
+param = param.substring(6);  // delete-book?page=2の「2」以降を格納
+const pageEl = document.querySelectorAll('.page-param')  // 要素を配列風オブジェクトに格納
+for (const element of pageEl) {  // それぞれの要素に値を格納
+  element.value = param;
+}
+*/
+</script>
+
+{% endblock %}

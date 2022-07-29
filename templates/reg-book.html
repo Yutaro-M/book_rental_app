@@ -1,0 +1,84 @@
+<!-- 書籍の登録 -->
+{% extends "layout.html" %}
+
+<!-- 差分を記述 -->
+{%- block main %}
+
+<!-- メイン -->
+<style>
+
+</style>
+<main class="main-p">
+  <div class="main-c common-w">
+    <h1>書籍登録</h1>
+    <div class="reg-book-img">
+      <div class="reg-book">
+        <form action="{{ url_for('book_bp.reg_book_db') }}" method="POST">
+          <div>
+            <label for="isbn">ISBN</label>
+            <input type="text" id="isbn" name="isbn">
+          </div>
+          <div>
+            <label for="title">タイトル</label>
+            <input type="text" id="title" name="title">
+          </div>
+          <div>
+            <label for="author">著者</label>
+            <input type="text" id="author" name="author">
+          </div>
+          <div>
+            <label for="publisher">出版社</label>
+            <input type="text" id="publisher" name="publisher">
+          </div>
+          <div>
+            <label for="pubdate">発行日</label>
+            <input type="date" id="pubdate" name="pubdate">
+          </div>
+          <div class="message {{message.status}}">{{ message.body }}</div>
+          <button type="submit" id="book-register">データベースに登録</button>
+        </form>
+      </div>
+      <div>
+        <img id="cover" src="">
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+'use strict';
+const bookRegisterEl = document.getElementById('book-register');
+const isbnEl = document.getElementById('isbn');
+// ISBNから書籍情報を取得する関数を定義
+async function zipApi() {
+  const isbn = isbnEl.value
+  const url = `https://api.openbd.jp/v1/get?isbn=${isbn}&pretty`;
+  const res = await fetch(url);
+  const obj = await res.json();
+  // ISBNをコピペする際に、誤って入力される可能性のある空白を除去
+  isbnEl.value = isbn.replaceAll(' ','');;
+  document.getElementById('title').value = obj[0].summary.title;
+  // document.getElementById('author').value = obj[0].summary.author.replaceAll(/／.+? /g, '、').replace(/／.+$/, '');
+  // 著者は名前のみ表示、翻訳者は翻訳を表示
+  document.getElementById('author').value = obj[0].summary.author.replaceAll(/／著/g, '').replaceAll(/／翻訳/g, '/翻訳');
+  document.getElementById('publisher').value = obj[0].summary.publisher;
+  // DBに発行日を登録する（表示する際に、データを加工して年のみを表示する予定）
+  // document.getElementById('pubdate').value = obj[0].summary.pubdate;
+  const pubdate = obj[0].summary.pubdate;
+  document.getElementById('pubdate').value = `${pubdate.slice(0,4)}-${pubdate.slice(4,6)}-${pubdate.slice(6,8)}`;
+  document.getElementById('cover').src = obj[0].summary.cover;
+}
+
+// ISBNの入力欄に数字を入れるたびに、処理を実行
+isbnEl.addEventListener('input', () => {
+  const isbn = isbnEl.value.replaceAll(/[- ]/g,'');
+  // isbnの文字数が規定以上に達したらAPIを呼び出す
+  // ISBNは2007年より13桁で表示
+  if(isbn.length >= 13){
+    zipApi();
+    console.log(0)
+  }
+});
+</script>
+
+{% endblock %}

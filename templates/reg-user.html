@@ -1,0 +1,41 @@
+<!-- 書籍の登録 -->
+{% extends "layout.html" %}
+
+<!-- 差分を記述 -->
+{%- block main %}
+
+<!-- メイン -->
+<style>
+
+</style>
+<main class="main-p">
+  <div class="main-c common-w">
+    <h1>ユーザー登録</h1>
+      <div class="reg-user">
+        <form action="{{ url_for('user_bp.reg_user_db') }}" method="POST">
+          <div>
+            <label for="user-id">ユーザーID</label>
+            <input type="text" id="user-id" name="user_id">
+          </div>
+          <div>
+            <label for="user-name">氏名</label>
+            <input type="text" id="user-name" name="user_name">
+          </div>
+          <div>
+            <label for="user-email">メールアドレス</label>
+            <input type="text" id="user-email" name="user_email">
+          </div>
+          <div class="message {{message.status}}">{{ message.body }}</div>
+          <button type="submit" id="book-register">データベースに登録</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+'use strict';
+
+</script>
+
+{% endblock %}
